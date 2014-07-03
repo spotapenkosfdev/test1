@@ -1,0 +1,45 @@
+acme_api_json_test3:
+    path:     /apimanual/json_test3
+    defaults: { _controller: AcmeApiBundle:Default:json_test3 }
+    
+acme_api_json_test2:
+    path:     /apimanual/json_test2
+    defaults: { _controller: AcmeApiBundle:Default:json_test2 }
+
+acme_api_json_test:
+    path:     /apimanual/json_test
+    defaults: { _controller: AcmeApiBundle:Default:json_test }
+  
+acme_api_method_no:
+    path:     /apimanual/no
+    defaults: { _controller: AcmeApiBundle:Default:no } 
+
+acme_api_method_get:
+    path:     /apimanual
+    defaults: { _controller: AcmeApiBundle:Default:get }  
+    methods:  [GET]   
+
+acme_api_method_show:
+    pattern:     /apimanual/{id}
+    defaults: { _controller: AcmeApiBundle:Default:show }  
+    methods:  [GET]      
+
+acme_api_method_delete:
+    pattern:     /apimanual/{id}
+    defaults: { _controller: AcmeApiBundle:Default:delete }  
+    methods:  [DELETE]       
+     
+
+acme_api_method_post:
+    path:     /apimanual
+    defaults: { _controller: AcmeApiBundle:Default:post }  
+    methods:  [POST]      
+
+acme_api_method_put:
+    path:     /apimanual
+    defaults: { _controller: AcmeApiBundle:Default:put }  
+    methods:  [PUT]       
+    
+acme_api_method_get:
+    path:     /apimanual/{name}
+    defaults: { _controller: AcmeApiBundle:Default:index }              

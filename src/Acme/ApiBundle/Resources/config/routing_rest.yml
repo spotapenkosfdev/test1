@@ -1,0 +1,5 @@
+acme_api_resr_v1:
+    type: rest
+    prefix: /v1
+    resource: "Acme\ApiBundle\Controller\DefaultRestController"
+    name_prefix:  api_1_ # naming collision

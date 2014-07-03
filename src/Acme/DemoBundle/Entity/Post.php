@@ -38,7 +38,7 @@ class Post
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="published_at", type="datetime")
+     * @ORM\Column(name="published_at", type="datetime", nullable=true)
      */
     private $publishedAt;
 
