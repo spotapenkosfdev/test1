@@ -23,10 +23,13 @@ class DefaultController extends Controller
         $entities = $em->getRepository('AcmeDemoBundle:Post')->findAll();
         
         // create a simple Response with a 200 status code (the default)
-      //  $response = new Response('', Response::HTTP_OK);
-        
+    //    $response = new Response('', Response::HTTP_OK);
+      //  $response->setStatusCode(200,'huj');
         // create a JSON-response with a 200 status code
-        $response = new Response(json_encode(array('title' => $entities[0]->getTitle())));
+        
+         $serializedEntity = $this->get('jms_serializer')->serialize($entities, 'json');
+        
+        $response = new Response($serializedEntity);
         $response->headers->set('Content-Type', 'application/json');
         return $response;
        // return $this->render('AcmeApiBundle:Default:index.html.twig', array('name' => $name));
@@ -38,7 +41,7 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('AcmeDemoBundle:Post')->findAll();
-        
+        //$serializedEntity = $this->get('jms_serializer')->serialize($entities, 'json');
         $response = new JsonResponse();
         $response->setData(array('title' => $entities[0]->getTitle()));
     /*    $response->setData(array(
