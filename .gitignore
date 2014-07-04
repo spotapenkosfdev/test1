@@ -9,3 +9,6 @@
 /vendor/
 /bin/
 /composer.phar
+
+# JetBrains IDE
+.idea/
