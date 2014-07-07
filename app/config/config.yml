@@ -66,7 +66,7 @@ doctrine:
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
-        #auto_mapping: true  
+#        auto_mapping: true
         entity_managers:
             default:
                 mappings:
@@ -74,6 +74,7 @@ doctrine:
                     SonataUserBundle: ~
                     FOSUserBundle: ~
                     AcmeDemoBundle: ~
+                    FOSOAuthServerBundle: ~
 
    
 # Swiftmailer Configuration
@@ -158,17 +159,24 @@ sonata_block:
         #sonata.media.block.feature_media:
         
  #stas user bunctionality                
-fos_user:  
+fos_user:
     db_driver: orm
     firewall_name: main
     user_class: Application\Sonata\UserBundle\Entity\User
-    
     group:
         group_class: Application\Sonata\UserBundle\Entity\Group
         group_manager: sonata.user.orm.group_manager
-    
     service:
-        user_manager: sonata.user.orm.user_manager    
+        user_manager: sonata.user.orm.user_manager
+
+fos_oauth_server:
+    db_driver: orm
+    client_class:        Acme\DemoBundle\Entity\Client
+    access_token_class:  Acme\DemoBundle\Entity\AccessToken
+    refresh_token_class: Acme\DemoBundle\Entity\RefreshToken
+    auth_code_class:     Acme\DemoBundle\Entity\AuthCode
+    service:
+        user_provider: sonata.user.orm.user_manager
 
 sonata_admin:
    dashboard:

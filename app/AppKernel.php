@@ -41,6 +41,9 @@ class AppKernel extends Kernel
             new Acme\ApiBundle\AcmeApiBundle(),
             new Voryx\RESTGeneratorBundle\VoryxRESTGeneratorBundle(),
             new Nelmio\CorsBundle\NelmioCorsBundle(),
+
+            //oauth functionality
+            new FOS\OAuthServerBundle\FOSOAuthServerBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
