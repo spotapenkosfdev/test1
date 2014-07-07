@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Acme\DemoBundle\Entity\Post;
+use Acme\DemoBundle\Form\PostType;
 
 class DefaultController extends Controller
 {
@@ -117,11 +118,43 @@ class DefaultController extends Controller
        
         if (0 === strpos($request->headers->get('Content-Type'), 'application/json')) {
             $data = json_decode($request->getContent(), true);
-       //     $request->request->replace(is_array($data) ? $data : array());
+            $request->request->replace(is_array($data) ? $data : array());
         } 
         
        
         $product = new Post();
+        
+ /*  
+        $form = $this->createForm(new PostType(), $product, array("method" => $request->getMethod()));
+     //   $this->removeExtraFields($request, $form);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            
+             var_dump('yes!');   
+        }    else {
+             var_dump('no!');   
+        }*/
+        
+        $errors = array();
+        
+        if(strlen($data['title']) < 3) {
+             $errors['title'] = 'Title too short!';
+        }
+        
+        if(strlen($data['body']) < 3) {
+             $errors['title'] = 'Title too short!';
+        }
+
+        if(count($errors)) {
+                $response = new JsonResponse();
+                $response->headers->set('Content-Type', 'application/json');
+                $response->setStatusCode(202,'NO');
+                $response->setData(array('errors' => $errors));
+
+            return $response;
+        }
+        
         $product->setTitle($data['title']);
         $product->setBody($data['body']);
     
