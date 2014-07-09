@@ -17,7 +17,7 @@ class PostType extends AbstractType
         $builder
             ->add('title')
             ->add('body')
-            ->add('publishedAt')
+//            ->add('publishedAt')
         ;
     }
     

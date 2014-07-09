@@ -3,6 +3,7 @@
 namespace Acme\DemoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints;
 
 /**
  * Post
@@ -25,6 +26,9 @@ class Post
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255)
+     *
+     * @Constraints\NotNull
+     * @Constraints\NotBlank
      */
     private $title;
 
@@ -32,6 +36,9 @@ class Post
      * @var string
      *
      * @ORM\Column(name="body", type="text")
+     *
+     * @Constraints\NotNull
+     * @Constraints\NotBlank
      */
     private $body;
 
@@ -46,7 +53,7 @@ class Post
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -69,7 +76,7 @@ class Post
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -92,7 +99,7 @@ class Post
     /**
      * Get body
      *
-     * @return string 
+     * @return string
      */
     public function getBody()
     {
@@ -115,7 +122,7 @@ class Post
     /**
      * Get publishedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getPublishedAt()
     {
