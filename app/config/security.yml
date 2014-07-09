@@ -28,6 +28,10 @@ security:
             id: fos_user.user_manager
 
     firewalls:
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
         #stas user bunctionality
         admin:
             pattern:            /admin(.*)
@@ -41,6 +45,25 @@ security:
             logout:
                 path:           /admin/logout
             anonymous:          true
+
+        api:
+            pattern:    (^/apimanual)|(^/demo_rest)
+            fos_oauth:  true
+            stateless:  true
+            anonymous:  false # can be omitted as its default value
+
+        oauth_token:
+            pattern:    ^/oauth/v2/token
+            security:   false
+
+        oauth_authorize:
+            pattern:    ^/oauth/v2/auth
+            form_login:
+                provider:       fos_userbundle
+                login_path:     sonata_user_admin_security_login
+                check_path:     sonata_user_admin_security_check
+            anonymous: true
+
         main:
             pattern:    ^/
             context:    user
@@ -54,24 +77,6 @@ security:
             logout:       true
             anonymous:    true
 
-        api:
-            pattern:    ^/apimanual
-            fos_oauth:  true
-            stateless:  true
-            anonymous:  false # can be omitted as its default value
-
-        oauth_token:
-            pattern:    ^/oauth/v2/token
-            security:   false
-
-        oauth_authorize:
-            pattern:    ^/oauth/v2/auth
-            form_login:
-                provider:       fos_userbundle
-                login_path:     sonata_user_security_login
-                check_path:     sonata_user_security_check
-            anonymous: true
-
          # pattern:             .*
          #   context:             user
          #   form_login:
@@ -83,9 +88,6 @@ security:
          #   logout:             true
          #   anonymous:          true
         #commented
-        dev:
-            pattern:  ^/(_(profiler|wdt)|css|images|js)/
-            security: false
 #
  #       login:
   #          pattern:  ^/demo/secured/login$

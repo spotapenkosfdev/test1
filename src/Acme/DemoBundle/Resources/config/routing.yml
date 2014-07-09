@@ -15,3 +15,8 @@ _post:
     resource: "@AcmeDemoBundle/Controller/PostController.php"
     type: annotation 
     prefix:   /demo   
+
+_rest_post:
+    resource: Acme\DemoBundle\Controller\RestPostController
+    type:     rest
+    prefix:   /demo_rest
